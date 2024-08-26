@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { registerFormSchema, RegisterFormSchemaType } from './_schema';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -59,12 +60,12 @@ const Register = () => {
 
               <FormField
                 control={form.control}
-                name="email"
+                name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input {...field} type="email" />
+                      <Input {...field} type="password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -73,17 +74,19 @@ const Register = () => {
 
               <FormField
                 control={form.control}
-                name="email"
+                name="passwordConfirm"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Password Confirm</FormLabel>
                     <FormControl>
-                      <Input {...field} type="email" />
+                      <Input {...field} type="password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              <Button type="submit">Register</Button>
             </form>
           </Form>
         </CardContent>
