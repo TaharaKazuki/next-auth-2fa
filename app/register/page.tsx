@@ -3,7 +3,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { registerFormSchema, RegisterFormSchemaType } from './_schema';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -21,6 +20,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import {
+  registerFormSchema,
+  RegisterFormSchemaType,
+} from '@/validation/register/schema';
 
 const Register = () => {
   const form = useForm<RegisterFormSchemaType>({
@@ -28,7 +31,7 @@ const Register = () => {
     defaultValues: {
       email: '',
       password: '',
-      passwordConfirm: '',
+      confirmPassword: '',
     },
   });
 
@@ -77,7 +80,7 @@ const Register = () => {
 
               <FormField
                 control={form.control}
-                name="passwordConfirm"
+                name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Password Confirm</FormLabel>
