@@ -1,11 +1,20 @@
 import * as z from 'zod';
 
-import { passwordSchema } from './schemas/password';
+import { emailSchema } from './schemas/email';
+import { passwordSetSchema, passwordSchema } from './schemas/password';
 
 export const registerFormSchema = z
   .object({
-    email: z.string().email(),
+    email: emailSchema,
+  })
+  .and(passwordSetSchema);
+
+export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>;
+
+export const loginFormSchema = z
+  .object({
+    email: emailSchema,
   })
   .and(passwordSchema);
 
-export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>;
+export type LoginFormSchemaType = z.infer<typeof loginFormSchema>;

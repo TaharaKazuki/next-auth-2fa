@@ -21,27 +21,27 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import {
-  registerFormSchema,
-  RegisterFormSchemaType,
+  loginFormSchema,
+  LoginFormSchemaType,
 } from '@/validation/register/schema';
 
 const Login = () => {
-  const form = useForm<RegisterFormSchemaType>({
-    resolver: zodResolver(registerFormSchema),
+  const form = useForm<LoginFormSchemaType>({
+    resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const handleSubmit = async (data: RegisterFormSchemaType) => {};
+  const handleSubmit = async (data: LoginFormSchemaType) => {};
 
   return (
     <main className="flex min-h-screen items-center justify-center">
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Login</CardTitle>
-          <CardDescription>Login</CardDescription>
+          <CardDescription>Login to your account.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
