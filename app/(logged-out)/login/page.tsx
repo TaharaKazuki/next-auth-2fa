@@ -24,10 +24,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import {
-  loginFormSchema,
-  LoginFormSchemaType,
-} from '@/validation/register/schema';
+import { loginFormSchema, LoginFormSchemaType } from '@/validation/schema';
 
 const Login = () => {
   const router = useRouter();

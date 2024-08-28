@@ -26,7 +26,7 @@ import { Input } from '@/components/ui/input';
 import {
   registerFormSchema,
   RegisterFormSchemaType,
-} from '@/validation/register/schema';
+} from '@/validation/schema';
 
 const Register = () => {
   const form = useForm<RegisterFormSchemaType>({

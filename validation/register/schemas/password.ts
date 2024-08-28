@@ -41,3 +41,11 @@ export const passwordSchema = z
   .superRefine((data, ctx) => {
     validatePassword(data.password, ctx);
   });
+
+export const currentPasswordSchema = z
+  .object({
+    currentPassword: z.string(),
+  })
+  .superRefine((data, ctx) => {
+    validatePassword(data.currentPassword, ctx);
+  });
