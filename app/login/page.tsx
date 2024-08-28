@@ -24,6 +24,7 @@ import {
   loginFormSchema,
   LoginFormSchemaType,
 } from '@/validation/register/schema';
+import { loginWithCredentials } from './actions';
 
 const Login = () => {
   const form = useForm<LoginFormSchemaType>({
@@ -34,7 +35,18 @@ const Login = () => {
     },
   });
 
-  const handleSubmit = async (data: LoginFormSchemaType) => {};
+  const handleSubmit = async (data: LoginFormSchemaType) => {
+    const response = await loginWithCredentials({
+      email: data.email,
+      password: data.password,
+    });
+
+    if (response?.error) {
+      form.setError('email', {
+        message: response.message,
+      });
+    }
+  };
 
   return (
     <main className="flex min-h-screen items-center justify-center">

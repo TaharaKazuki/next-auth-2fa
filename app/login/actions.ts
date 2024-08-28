@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 import { emailSchema } from '@/validation/register/schemas/email';
 import { passwordSchema } from '@/validation/register/schemas/password';
+import { signIn } from '@/auth';
 
 type LoginWithCredentialsArgsType = {
   email: string;
@@ -31,4 +32,12 @@ export const loginWithCredentials = async ({
       message: loginValidation.error.issues[0].message ?? 'An error occurred',
     };
   }
+
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+  } catch (e) {}
 };
