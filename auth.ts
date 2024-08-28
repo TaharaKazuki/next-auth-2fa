@@ -7,6 +7,7 @@ import db from './db/drizzle';
 import { users } from './db/usersSchema';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  secret: process.env.AUTH_SECRET,
   callbacks: {
     jwt({ token, user }) {
       if (user) {
@@ -18,6 +19,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       session.user.id = token.id as string;
       return session;
     },
+  },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+      },
+    },
+  },
+  jwt: {
+    maxAge: 60 * 60 * 24 * 7,
+  },
+  session: {
+    strategy: 'jwt',
+    maxAge: 60 * 60 * 24 * 7,
+    updateAge: 60 * 60 * 24,
   },
   providers: [
     Credentials({
