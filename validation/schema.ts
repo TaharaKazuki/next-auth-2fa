@@ -4,7 +4,7 @@ import { emailSchema } from './register/schemas/email';
 import {
   confirmPasswordSchema,
   passwordSchema,
-  currentPasswordSchema,
+  changePasswordSchema,
 } from './register/schemas/password';
 
 /* Register */
@@ -26,7 +26,7 @@ export const loginFormSchema = z
 export type LoginFormSchemaType = z.infer<typeof loginFormSchema>;
 
 /* Change Password */
-export const changePasswordFormSchema = currentPasswordSchema;
+export const changePasswordFormSchema = changePasswordSchema;
 
 export type ChangePasswordFormSchemaType = z.infer<
   typeof changePasswordFormSchema

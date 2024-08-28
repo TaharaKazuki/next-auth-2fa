@@ -70,7 +70,7 @@ export const passwordSchema = z
     validatePassword(data.password, 'password', ctx);
   });
 
-export const currentPasswordSchema = z
+export const changePasswordSchema = z
   .object({
     currentPassword: z.string(),
     password: z.string(),
