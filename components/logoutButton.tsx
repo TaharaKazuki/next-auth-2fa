@@ -1,7 +1,7 @@
 'use client';
 
-import { logout } from '@/app/actions';
 import { Button } from './ui/button';
+import { logout } from '@/app/actions';
 
 const LogoutButton = () => {
   return (

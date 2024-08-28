@@ -1,11 +1,24 @@
+import { compare } from 'bcryptjs';
+import { eq } from 'drizzle-orm';
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import { users } from './db/usersSchema';
+
 import db from './db/drizzle';
-import { eq } from 'drizzle-orm';
-import { compare } from 'bcryptjs';
+import { users } from './db/usersSchema';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      session.user.id = token.id as string;
+      return session;
+    },
+  },
   providers: [
     Credentials({
       credentials: {

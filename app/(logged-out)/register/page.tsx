@@ -135,7 +135,7 @@ const Register = () => {
             </Form>
           </CardContent>
           <CardFooter className="flex-col gap-2">
-            <div className="text-muted-foreground text-sm">
+            <div className="text-sm text-muted-foreground">
               Already have an account{' '}
               <Link href={'/login'} className="underline">
                 Register

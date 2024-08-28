@@ -2,9 +2,9 @@
 
 import { z } from 'zod';
 
+import { signIn } from '@/auth';
 import { emailSchema } from '@/validation/register/schemas/email';
 import { passwordSchema } from '@/validation/register/schemas/password';
-import { signIn } from '@/auth';
 
 type LoginWithCredentialsArgsType = {
   email: string;

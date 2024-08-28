@@ -1,8 +1,11 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
+import { loginWithCredentials } from './actions';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -25,9 +28,6 @@ import {
   loginFormSchema,
   LoginFormSchemaType,
 } from '@/validation/register/schema';
-import { loginWithCredentials } from './actions';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 const Login = () => {
   const router = useRouter();
@@ -110,14 +110,14 @@ const Login = () => {
           </Form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <div className="text-muted-foreground text-sm">
-            Don't have an account?{' '}
+          <div className="text-sm text-muted-foreground">
+            Don&apos;t have an account?{' '}
             <Link href={'/register'} className="underline">
               Register
             </Link>
           </div>
 
-          <div className="text-muted-foreground text-sm">
+          <div className="text-sm text-muted-foreground">
             Forgot password?{' '}
             <Link href={'/password-reset'} className="underline">
               Reset my password
