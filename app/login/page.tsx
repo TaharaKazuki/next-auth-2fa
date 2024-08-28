@@ -8,6 +8,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -26,6 +27,7 @@ import {
 } from '@/validation/register/schema';
 import { loginWithCredentials } from './actions';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Login = () => {
   const router = useRouter();
@@ -107,6 +109,21 @@ const Login = () => {
             </form>
           </Form>
         </CardContent>
+        <CardFooter className="flex-col gap-2">
+          <div className="text-muted-foreground text-sm">
+            Don't have an account?{' '}
+            <Link href={'/register'} className="underline">
+              Register
+            </Link>
+          </div>
+
+          <div className="text-muted-foreground text-sm">
+            Forgot password?{' '}
+            <Link href={'/password-reset'} className="underline">
+              Reset my password
+            </Link>
+          </div>
+        </CardFooter>
       </Card>
     </main>
   );

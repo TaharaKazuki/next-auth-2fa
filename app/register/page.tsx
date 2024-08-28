@@ -10,6 +10,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -133,6 +134,14 @@ const Register = () => {
               </form>
             </Form>
           </CardContent>
+          <CardFooter className="flex-col gap-2">
+            <div className="text-muted-foreground text-sm">
+              Already have an account{' '}
+              <Link href={'/login'} className="underline">
+                Register
+              </Link>
+            </div>
+          </CardFooter>
         </Card>
       )}
     </main>
