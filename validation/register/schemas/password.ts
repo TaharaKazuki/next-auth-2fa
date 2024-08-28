@@ -37,7 +37,7 @@ const validatePasswordMatch = (
 /*
  * 現在のpasswordと一致してないかのルール
  */
-const validatePasswordNoMatch = (
+const validateCurrentPasswordNoMatch = (
   currentPassword: string,
   password: string,
   ctx: z.RefinementCtx
@@ -80,6 +80,6 @@ export const changePasswordSchema = z
     validatePassword(data.currentPassword, 'currentPassword', ctx);
     validatePassword(data.password, 'password', ctx);
     validatePassword(data.confirmPassword, 'confirmPassword', ctx);
-    validatePasswordNoMatch(data.currentPassword, data.password, ctx);
+    validateCurrentPasswordNoMatch(data.currentPassword, data.password, ctx);
     validatePasswordMatch(data.password, data.confirmPassword, ctx);
   });
