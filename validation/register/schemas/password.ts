@@ -1,10 +1,14 @@
 import * as z from 'zod';
 
-const validatePassword = (password: string, ctx: z.RefinementCtx) => {
+const validatePassword = (
+  password: string,
+  fieldName: string,
+  ctx: z.RefinementCtx
+) => {
   if (password.length < 5) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
-      path: ['password'],
+      path: [fieldName],
       message: 'Password must be at least 5 characters long',
     });
   }
@@ -30,7 +34,8 @@ export const passwordSetSchema = z
     confirmPassword: z.string(),
   })
   .superRefine((data, ctx) => {
-    validatePassword(data.password, ctx);
+    validatePassword(data.password, 'password', ctx);
+    validatePassword(data.confirmPassword, 'confirmPassword', ctx);
     validatePasswordMatch(data.password, data.confirmPassword, ctx);
   });
 
@@ -39,7 +44,7 @@ export const passwordSchema = z
     password: z.string(),
   })
   .superRefine((data, ctx) => {
-    validatePassword(data.password, ctx);
+    validatePassword(data.password, 'password', ctx);
   });
 
 export const currentPasswordSchema = z
@@ -49,7 +54,8 @@ export const currentPasswordSchema = z
     confirmPassword: z.string(),
   })
   .superRefine((data, ctx) => {
-    validatePassword(data.currentPassword, ctx);
-    validatePassword(data.password, ctx);
+    validatePassword(data.currentPassword, 'currentPassword', ctx);
+    validatePassword(data.password, 'password', ctx);
+    validatePassword(data.confirmPassword, 'confirmPassword', ctx);
     validatePasswordMatch(data.password, data.confirmPassword, ctx);
   });

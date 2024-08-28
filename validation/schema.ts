@@ -26,8 +26,7 @@ export const loginFormSchema = z
 export type LoginFormSchemaType = z.infer<typeof loginFormSchema>;
 
 /* Change Password */
-export const changePasswordFormSchema =
-  currentPasswordSchema.and(passwordSetSchema);
+export const changePasswordFormSchema = currentPasswordSchema;
 
 export type ChangePasswordFormSchemaType = z.infer<
   typeof changePasswordFormSchema
