@@ -1,5 +1,8 @@
 import * as z from 'zod';
 
+/*
+ * password標準のvalidationルール
+ */
 const validatePassword = (
   password: string,
   fieldName: string,
@@ -14,6 +17,9 @@ const validatePassword = (
   }
 };
 
+/*
+ * 確認用のpasswordと一致しているかのルール
+ */
 const validatePasswordMatch = (
   password: string,
   confirmPassword: string,
@@ -28,7 +34,24 @@ const validatePasswordMatch = (
   }
 };
 
-export const passwordSetSchema = z
+/*
+ * 現在のpasswordと一致してないかのルール
+ */
+const validatePasswordNoMatch = (
+  currentPassword: string,
+  password: string,
+  ctx: z.RefinementCtx
+) => {
+  if (currentPassword === password) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['currentPassword'],
+      message: 'Please change from your current password.',
+    });
+  }
+};
+
+export const confirmPasswordSchema = z
   .object({
     password: z.string(),
     confirmPassword: z.string(),
@@ -57,5 +80,6 @@ export const currentPasswordSchema = z
     validatePassword(data.currentPassword, 'currentPassword', ctx);
     validatePassword(data.password, 'password', ctx);
     validatePassword(data.confirmPassword, 'confirmPassword', ctx);
+    validatePasswordNoMatch(data.currentPassword, data.password, ctx);
     validatePasswordMatch(data.password, data.confirmPassword, ctx);
   });

@@ -2,7 +2,7 @@ import * as z from 'zod';
 
 import { emailSchema } from './register/schemas/email';
 import {
-  passwordSetSchema,
+  confirmPasswordSchema,
   passwordSchema,
   currentPasswordSchema,
 } from './register/schemas/password';
@@ -12,7 +12,7 @@ export const registerFormSchema = z
   .object({
     email: emailSchema,
   })
-  .and(passwordSetSchema);
+  .and(confirmPasswordSchema);
 
 export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>;
 
