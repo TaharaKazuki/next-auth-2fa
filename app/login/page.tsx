@@ -25,8 +25,10 @@ import {
   LoginFormSchemaType,
 } from '@/validation/register/schema';
 import { loginWithCredentials } from './actions';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+  const router = useRouter();
   const form = useForm<LoginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -42,9 +44,11 @@ const Login = () => {
     });
 
     if (response?.error) {
-      form.setError('email', {
+      form.setError('root', {
         message: response.message,
       });
+    } else {
+      router.push('/my-account');
     }
   };
 
@@ -58,7 +62,10 @@ const Login = () => {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)}>
-              <fieldset className="flex flex-col gap-2">
+              <fieldset
+                disabled={form.formState.isSubmitting}
+                className="flex flex-col gap-2"
+              >
                 <FormField
                   control={form.control}
                   name="email"
@@ -90,7 +97,11 @@ const Login = () => {
                     </FormItem>
                   )}
                 />
-
+                {!!form.formState.errors.root?.message && (
+                  <FormMessage>
+                    {form.formState.errors.root.message}
+                  </FormMessage>
+                )}
                 <Button type="submit">Login</Button>
               </fieldset>
             </form>
