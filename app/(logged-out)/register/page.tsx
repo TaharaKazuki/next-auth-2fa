@@ -138,7 +138,7 @@ const Register = () => {
             <div className="text-sm text-muted-foreground">
               Already have an account{' '}
               <Link href={'/login'} className="underline">
-                Register
+                Login
               </Link>
             </div>
           </CardFooter>
