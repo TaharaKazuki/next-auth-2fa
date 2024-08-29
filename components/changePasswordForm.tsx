@@ -50,8 +50,9 @@ const ChangePasswordForm = () => {
       });
     } else {
       toast({
-        title: 'Password change',
+        title: 'Password changed',
         description: 'Your password has been updated.',
+        className: 'border-green-500',
       });
       form.reset();
     }
