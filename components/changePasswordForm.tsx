@@ -13,6 +13,7 @@ import {
   FormControl,
   FormMessage,
 } from './ui/form';
+import { changePassword } from '@/app/(logged-in)/change-password/actions';
 import { Input } from '@/components/ui/input';
 import {
   changePasswordFormSchema,
@@ -29,7 +30,23 @@ const ChangePasswordForm = () => {
     },
   });
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async ({
+    currentPassword,
+    password,
+    confirmPassword,
+  }: ChangePasswordFormSchemaType) => {
+    const response = await changePassword({
+      currentPassword,
+      password,
+      confirmPassword,
+    });
+
+    if (response?.error) {
+      form.setError('root', {
+        message: response.message,
+      });
+    }
+  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -90,9 +107,10 @@ const ChangePasswordForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">
-            {form.formState.isSubmitting ? 'Submitting...' : 'Change Password'}
-          </Button>
+          {!!form.formState.errors.root?.message && (
+            <FormMessage>{form.formState.errors.root?.message}</FormMessage>
+          )}
+          <Button type="submit">Change Password</Button>
         </fieldset>
       </form>
     </Form>
