@@ -39,6 +39,7 @@ const PasswordReset = () => {
   });
 
   const handleSubmit = async ({ email }: { email: string }) => {
+    console.info('email', email);
     await passwordReset(email);
   };
 
