@@ -47,7 +47,7 @@ const PasswordReset = () => {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)}>
+            <form onSubmit={form.handleSubmit(handleSubmit)} noValidate>
               <fieldset
                 disabled={form.formState.isSubmitting}
                 className="flex flex-col gap-2"
@@ -59,7 +59,12 @@ const PasswordReset = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input {...field} type="email" autoComplete="email" />
+                        <Input
+                          {...field}
+                          type="email"
+                          autoComplete="email"
+                          formNoValidate
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

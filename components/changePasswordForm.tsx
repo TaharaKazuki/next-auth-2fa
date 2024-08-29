@@ -59,7 +59,7 @@ const ChangePasswordForm = () => {
   };
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)}>
+      <form onSubmit={form.handleSubmit(handleSubmit)} noValidate>
         <fieldset
           disabled={form.formState.isSubmitting}
           className="flex flex-col gap-2"
