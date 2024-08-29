@@ -1,7 +1,5 @@
 'use server';
 
-import { z } from 'zod';
-
 import { signIn } from '@/auth';
 import { emailSchema } from '@/validation/register/schemas/email';
 import { passwordSchema } from '@/validation/register/schemas/password';
@@ -15,11 +13,7 @@ export const loginWithCredentials = async ({
   email,
   password,
 }: LoginWithCredentialsArgsType) => {
-  const loginSchema = z
-    .object({
-      email: emailSchema,
-    })
-    .and(passwordSchema);
+  const loginSchema = emailSchema.and(passwordSchema);
 
   const loginValidation = loginSchema.safeParse({
     email,

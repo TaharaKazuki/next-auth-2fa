@@ -1,7 +1,6 @@
 'use server';
 
 import { hash } from 'bcryptjs';
-import * as z from 'zod';
 
 import db from '@/db/drizzle';
 import { users } from '@/db/usersSchema';
@@ -19,11 +18,7 @@ export const registerUser = async ({
   confirmPassword,
 }: RegisterUser) => {
   try {
-    const newUserSchema = z
-      .object({
-        email: emailSchema,
-      })
-      .and(confirmPasswordSchema);
+    const newUserSchema = emailSchema.and(confirmPasswordSchema);
 
     const newUserValidation = newUserSchema.safeParse({
       email,

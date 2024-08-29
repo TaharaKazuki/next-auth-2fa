@@ -8,20 +8,12 @@ import {
 } from './register/schemas/password';
 
 /* Register */
-export const registerFormSchema = z
-  .object({
-    email: emailSchema,
-  })
-  .and(confirmPasswordSchema);
+export const registerFormSchema = emailSchema.and(confirmPasswordSchema);
 
 export type RegisterFormSchemaType = z.infer<typeof registerFormSchema>;
 
 /* Login */
-export const loginFormSchema = z
-  .object({
-    email: emailSchema,
-  })
-  .and(passwordSchema);
+export const loginFormSchema = emailSchema.and(passwordSchema);
 
 export type LoginFormSchemaType = z.infer<typeof loginFormSchema>;
 
@@ -31,3 +23,8 @@ export const changePasswordFormSchema = changePasswordSchema;
 export type ChangePasswordFormSchemaType = z.infer<
   typeof changePasswordFormSchema
 >;
+
+/*  Reset Password of email schema */
+export const resetPasswordFormSchema = emailSchema;
+
+export type ResetPasswordFormSchemaType = z.infer<typeof emailSchema>;
