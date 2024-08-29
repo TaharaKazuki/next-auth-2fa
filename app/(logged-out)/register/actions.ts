@@ -6,7 +6,7 @@ import * as z from 'zod';
 import db from '@/db/drizzle';
 import { users } from '@/db/usersSchema';
 import { emailSchema } from '@/validation/register/schemas/email';
-import { passwordSchema } from '@/validation/register/schemas/password';
+import { confirmPasswordSchema } from '@/validation/register/schemas/password';
 
 type RegisterUser = {
   email: string;
@@ -23,7 +23,7 @@ export const registerUser = async ({
       .object({
         email: emailSchema,
       })
-      .and(passwordSchema);
+      .and(confirmPasswordSchema);
 
     const newUserValidation = newUserSchema.safeParse({
       email,
