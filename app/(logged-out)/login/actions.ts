@@ -4,7 +4,7 @@ import { signIn } from '@/auth';
 import { emailSchema } from '@/validation/register/schemas/email';
 import { passwordSchema } from '@/validation/register/schemas/password';
 
-type LoginWithCredentialsArgsType = {
+type LoginWithCredentialsPropsType = {
   email: string;
   password: string;
 };
@@ -12,7 +12,7 @@ type LoginWithCredentialsArgsType = {
 export const loginWithCredentials = async ({
   email,
   password,
-}: LoginWithCredentialsArgsType) => {
+}: LoginWithCredentialsPropsType) => {
   const loginSchema = emailSchema.and(passwordSchema);
 
   const loginValidation = loginSchema.safeParse({

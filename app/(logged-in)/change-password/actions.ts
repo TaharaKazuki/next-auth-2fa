@@ -8,7 +8,7 @@ import db from '@/db/drizzle';
 import { users } from '@/db/usersSchema';
 import { changePasswordSchema } from '@/validation/register/schemas/password';
 
-type ChangePasswordArgsType = {
+type ChangePasswordPropsType = {
   currentPassword: string;
   password: string;
   confirmPassword: string;
@@ -18,7 +18,7 @@ export const changePassword = async ({
   currentPassword,
   password,
   confirmPassword,
-}: ChangePasswordArgsType) => {
+}: ChangePasswordPropsType) => {
   const session = await auth();
 
   if (!session?.user?.id) {
