@@ -24,13 +24,16 @@ import {
 } from '@/validation/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 const PasswordReset = () => {
+  const searchParams = useSearchParams();
+
   const form = useForm<ResetPasswordFormSchemaType>({
     resolver: zodResolver(resetPasswordFormSchema),
     defaultValues: {
-      email: '',
+      email: decodeURIComponent(searchParams.get('email') ?? ''),
     },
   });
 
