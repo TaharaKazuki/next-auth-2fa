@@ -26,6 +26,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { passwordReset } from './actions';
 
 const PasswordReset = () => {
   const searchParams = useSearchParams();
@@ -37,7 +38,9 @@ const PasswordReset = () => {
     },
   });
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async ({ email }: { email: string }) => {
+    await passwordReset(email);
+  };
 
   return (
     <main className="flex justify-center items-center min-h-screen">
