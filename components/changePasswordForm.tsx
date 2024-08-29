@@ -13,6 +13,7 @@ import {
   FormControl,
   FormMessage,
 } from './ui/form';
+import { useToast } from './ui/use-toast';
 import { changePassword } from '@/app/(logged-in)/change-password/actions';
 import { Input } from '@/components/ui/input';
 import {
@@ -21,6 +22,8 @@ import {
 } from '@/validation/schema';
 
 const ChangePasswordForm = () => {
+  const { toast } = useToast();
+
   const form = useForm<ChangePasswordFormSchemaType>({
     resolver: zodResolver(changePasswordFormSchema),
     defaultValues: {
@@ -45,6 +48,12 @@ const ChangePasswordForm = () => {
       form.setError('root', {
         message: response.message,
       });
+    } else {
+      toast({
+        title: 'Password change',
+        description: 'Your password has been updated.',
+      });
+      form.reset();
     }
   };
   return (
