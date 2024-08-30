@@ -11,7 +11,7 @@ type UpdatePasswordPropsType = {
 };
 
 const UpdatePassword = async ({ searchParams }: UpdatePasswordPropsType) => {
-  let tokenIsValid = false;
+  // let tokenIsValid = false;
 
   const { token } = searchParams;
 
