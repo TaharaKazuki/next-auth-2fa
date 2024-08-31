@@ -14,13 +14,18 @@ import {
   FormMessage,
 } from './ui/form';
 import { useToast } from './ui/use-toast';
+import { updatePassword } from '@/app/(logged-out)/update-password/actions';
 import { Input } from '@/components/ui/input';
 import {
   updatePasswordFormSchema,
   UpdatePasswordFormSchemaType,
 } from '@/validation/schema';
 
-const UpdatePasswordForm = () => {
+type UpdatePasswordFormProps = {
+  token: string;
+};
+
+const UpdatePasswordForm = ({ token }: UpdatePasswordFormProps) => {
   const { toast } = useToast();
 
   const form = useForm<UpdatePasswordFormSchemaType>({
@@ -35,22 +40,11 @@ const UpdatePasswordForm = () => {
     password,
     confirmPassword,
   }: UpdatePasswordFormSchemaType) => {
-    // const response = await changePassword({
-    //   password,
-    //   confirmPassword,
-    // });
-    // if (response?.error) {
-    //   form.setError('root', {
-    //     message: response.message,
-    //   });
-    // } else {
-    //   toast({
-    //     title: 'Password changed',
-    //     description: 'Your password has been updated.',
-    //     className: 'border-green-500',
-    //   });
-    //   form.reset();
-    // }
+    const response = await updatePassword({
+      token,
+      password,
+      confirmPassword,
+    });
   };
   return (
     <Form {...form}>
@@ -97,7 +91,7 @@ const UpdatePasswordForm = () => {
           {!!form.formState.errors.root?.message && (
             <FormMessage>{form.formState.errors.root?.message}</FormMessage>
           )}
-          <Button type="submit">Change Password</Button>
+          <Button type="submit">Update Password</Button>
         </fieldset>
       </form>
     </Form>

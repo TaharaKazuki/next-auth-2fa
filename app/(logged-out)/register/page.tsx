@@ -38,11 +38,15 @@ const Register = () => {
     },
   });
 
-  const handleSubmit = async (data: RegisterFormSchemaType) => {
+  const handleSubmit = async ({
+    email,
+    password,
+    confirmPassword,
+  }: RegisterFormSchemaType) => {
     const response = await registerUser({
-      email: data.email,
-      password: data.password,
-      confirmPassword: data.confirmPassword,
+      email,
+      password,
+      confirmPassword,
     });
 
     if (response?.error) {

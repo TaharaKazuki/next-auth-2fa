@@ -36,10 +36,10 @@ const Login = () => {
     },
   });
 
-  const handleSubmit = async (data: LoginFormSchemaType) => {
+  const handleSubmit = async ({ email, password }: LoginFormSchemaType) => {
     const response = await loginWithCredentials({
-      email: data.email,
-      password: data.password,
+      email,
+      password,
     });
 
     if (response?.error) {

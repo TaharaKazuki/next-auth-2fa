@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import Link from 'next/link';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import UpdatePasswordForm from '@/components/updatePasswordForm';
 import db from '@/db/drizzle';
 import { passwordResetTokens } from '@/db/passwordResetTokens';
 
@@ -49,7 +50,7 @@ const UpdatePassword = async ({ searchParams }: UpdatePasswordPropsType) => {
         </CardHeader>
         <CardContent>
           {tokenIsValid ? (
-            <div>update password form</div>
+            <UpdatePasswordForm token={token ?? ''} />
           ) : (
             <Link className="underline" href={'/password-reset'}>
               Request another password reset link
