@@ -1,5 +1,11 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+
+import { passwordReset } from './actions';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -22,11 +28,6 @@ import {
   resetPasswordFormSchema,
   type ResetPasswordFormSchemaType,
 } from '@/validation/schema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { passwordReset } from './actions';
 
 const PasswordReset = () => {
   const searchParams = useSearchParams();
@@ -44,7 +45,7 @@ const PasswordReset = () => {
   };
 
   return (
-    <main className="flex justify-center items-center min-h-screen">
+    <main className="flex min-h-screen items-center justify-center">
       {form.formState.isSubmitSuccessful ? (
         <Card className="w-[350px]">
           <CardHeader>

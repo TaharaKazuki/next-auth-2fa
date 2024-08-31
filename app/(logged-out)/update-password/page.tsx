@@ -1,8 +1,9 @@
+import { eq } from 'drizzle-orm';
+import Link from 'next/link';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import db from '@/db/drizzle';
 import { passwordResetTokens } from '@/db/passwordResetTokens';
-import { eq } from 'drizzle-orm';
-import Link from 'next/link';
 
 type UpdatePasswordPropsType = {
   searchParams: {
@@ -37,7 +38,7 @@ const UpdatePassword = async ({ searchParams }: UpdatePasswordPropsType) => {
   }
 
   return (
-    <main className="flex justify-center items-center min-h-screen">
+    <main className="flex min-h-screen items-center justify-center">
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>

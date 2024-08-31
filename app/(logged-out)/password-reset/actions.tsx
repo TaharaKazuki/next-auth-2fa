@@ -1,10 +1,11 @@
 'use server';
+import { randomBytes } from 'crypto';
+import { eq } from 'drizzle-orm';
+
 import { auth } from '@/auth';
 import db from '@/db/drizzle';
 import { passwordResetTokens } from '@/db/passwordResetTokens';
 import { users } from '@/db/usersSchema';
-import { randomBytes } from 'crypto';
-import { eq } from 'drizzle-orm';
 
 export const passwordReset = async (emailAddress: string) => {
   const session = await auth();
