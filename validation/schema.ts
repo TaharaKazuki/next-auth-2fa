@@ -28,3 +28,11 @@ export type ChangePasswordFormSchemaType = z.infer<
 export const resetPasswordFormSchema = emailSchema;
 
 export type ResetPasswordFormSchemaType = z.infer<typeof emailSchema>;
+
+/*  Reset Password of email schema */
+
+export const updatePasswordFormSchema = confirmPasswordSchema;
+
+export type UpdatePasswordFormSchemaType = z.infer<
+  typeof updatePasswordFormSchema
+>;
