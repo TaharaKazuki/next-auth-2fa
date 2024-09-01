@@ -45,6 +45,18 @@ const UpdatePasswordForm = ({ token }: UpdatePasswordFormProps) => {
       password,
       confirmPassword,
     });
+
+    if (response?.error) {
+      form.setError('root', {
+        message: response.message,
+      });
+    } else {
+      toast({
+        title: 'Password changed',
+        description: 'Your password has been updated.',
+        className: 'border-green-500',
+      });
+    }
   };
   return (
     <Form {...form}>
